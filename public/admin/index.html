@@ -5,7 +5,7 @@
     <title>Content Manager</title>
     <!-- Scripts load first -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
     <!-- Script waits until CMS is ready -->
@@ -22,9 +22,12 @@
             }
           });
           window.netlifyIdentity.init();
-        }
 
-        CMS.init(); // ✅ Will now be defined
+          // Initialize CMS only after everything is loaded
+          if (typeof CMS !== "undefined") {
+            CMS.init(); // ✅ Will now be defined
+          }
+        }
       });
     </script>
   </body>
