@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: himanchal08/cms-dashboard
   branch: main
 
 media_folder: "public/uploads"
@@ -13,8 +14,5 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Meta Title", name: "metaTitle", widget: "string" }
-      - { label: "Meta Description", name: "metaDescription", widget: "text" }
