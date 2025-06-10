@@ -3,6 +3,7 @@ backend:
   name: github
   repo: himanchal08/cms-dashboard
   branch: main
+  site_domain: https://68480c8c70e65a908d94bda7--vtn-cms-dashboard.netlify.app/
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
