@@ -16,9 +16,13 @@ export async function getStaticProps({ params }) {
   const markdown = fs.readFileSync(`content/posts/${params.slug}.md`, "utf-8");
   const { data, content } = matter(markdown);
   const processed = await remark().use(html).process(content);
+
   return {
     props: {
-      frontmatter: data,
+      frontmatter: {
+        ...data,
+        date: data.date.toString(), // ✅ this is the fix
+      },
       content: processed.toString(),
     },
   };
@@ -28,6 +32,7 @@ export default function BlogPost({ frontmatter, content }) {
   return (
     <div>
       <h1>{frontmatter.title}</h1>
+      <p>{frontmatter.date}</p>
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   );
