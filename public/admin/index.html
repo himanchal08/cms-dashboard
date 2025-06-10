@@ -3,11 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Content Manager</title>
-
-    <!-- Decap CMS core -->
     <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-
-    <!-- Netlify Identity widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
@@ -25,10 +21,10 @@
         window.netlifyIdentity.init();
       }
 
-      // Initialize CMS after a short delay to ensure scripts are loaded
-      setTimeout(() => {
-        CMS.init();
-      }, 100);
+      // Explicitly load renamed config.yaml
+      CMS.init({
+        config: "/admin/config.yaml",
+      });
     </script>
   </body>
 </html>
