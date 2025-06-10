@@ -1,4 +1,3 @@
-# public/admin/config.yml
 backend:
   name: github
   repo: himanchal08/cms-dashboard
@@ -9,9 +8,9 @@ media_folder: "public/uploads"
 public_folder: "/uploads"
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "content/blog"
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
     create: true
     slug: "{{slug}}"
     fields:
