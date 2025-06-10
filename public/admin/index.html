@@ -3,26 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <title>Content Manager</title>
+
+    <!-- Decap CMS core -->
     <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+
+    <!-- Netlify Identity widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <script>
       window.CMS_MANUAL_INIT = true;
 
-      const identity = window.netlifyIdentity;
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+        window.netlifyIdentity.init();
+      }
 
-      identity.on("init", (user) => {
-        if (!user) {
-          identity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-
-      identity.init();
-
-      CMS.init();
+      // Initialize CMS after a short delay to ensure scripts are loaded
+      setTimeout(() => {
+        CMS.init();
+      }, 100);
     </script>
   </body>
 </html>
