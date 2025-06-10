@@ -21,10 +21,8 @@
         window.netlifyIdentity.init();
       }
 
-      // Explicitly load renamed config.yaml
-      CMS.init({
-        config: "/admin/config.yaml",
-      });
+      // Use default config path (public/admin/config.yml)
+      CMS.init();
     </script>
   </body>
 </html>
