@@ -1,16 +1,16 @@
+# public/admin/config.yml
 backend:
   name: github
   repo: himanchal08/cms-dashboard
   branch: main
-  base_url: https://vtn-cms-dashboard.netlify.app  # ✅ Required for GitHub OAuth
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
 collections:
-  - name: "posts"
-    label: "Blog Posts"
-    folder: "content/posts"
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
     create: true
     slug: "{{slug}}"
     fields:
