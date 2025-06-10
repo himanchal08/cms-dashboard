@@ -3,26 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <title>Content Manager</title>
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <!-- Scripts load first -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
   </head>
   <body>
+    <!-- Script waits until CMS is ready -->
     <script>
       window.CMS_MANUAL_INIT = true;
 
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-        window.netlifyIdentity.init();
-      }
+      window.addEventListener("load", function () {
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", (user) => {
+            if (!user) {
+              window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+              });
+            }
+          });
+          window.netlifyIdentity.init();
+        }
 
-      // Use default config path (public/admin/config.yml)
-      CMS.init();
+        CMS.init(); // ✅ Will now be defined
+      });
     </script>
   </body>
 </html>
